@@ -1,0 +1,46 @@
+Sum of Intervals
+Write a function called sumIntervals/sum_intervals that accepts an array of intervals, and returns the sum of all the interval lengths. Overlapping intervals should only be counted once.
+
+Intervals
+Intervals are represented by a pair of integers in the form of an array. The first value of the interval will always be less than the second value. Interval example: [1, 5] is an interval from 1 to 5. The length of this interval is 4.
+
+Overlapping Intervals
+List containing overlapping intervals:
+
+[
+   [1, 4],
+   [7, 10],
+   [3, 5]
+]
+
+public class Interval {
+
+     public static int sumIntervals(int[][] intervals) {
+               if (intervals.length == 0) {
+            return 0;
+        }
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+
+        int  sumDifference = 0;
+        int first = intervals[0][0] , second= intervals[0][1];
+
+        for (int i = 1; i < intervals.length; i++) {
+            int start = intervals[i][0];
+            int end = intervals[i][1];
+
+                       if (start <= second) {
+                             second = Math.max(second, end);
+            } else {
+                              sumDifference += second - first;
+
+                first = start;
+                second = end;
+            }
+        }
+
+      sumDifference += second - first  ;
+
+        return sumDifference ;
+    }
+
+}

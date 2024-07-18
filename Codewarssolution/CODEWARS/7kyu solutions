@@ -1,0 +1,145 @@
+Q1:Number of Decimal Digits
+   Determine the total number of digits in the integer (n>=0) given as input to the function. For example, 9 is a single digit, 66 has 2 digits and 128685 has 6 digits. Be careful to avoid overflows/underflows.
+
+   All inputs will be valid.
+
+   public class DecTools {
+     public static int Digits(long n) {
+          String s = Long.toString(n);
+          int count = 0 ;
+
+       for ( int i = 0 ; i < s.length() ; i++ )
+         {
+            count++ ;
+       }
+       return count ;
+
+       //return 0 ;
+     }
+   }
+
+
+Q2:Vowel Count
+Return the number (count) of vowels in the given string.
+
+We will consider a, e, i, o, u as vowels for this Kata (but not y).
+
+The input string will only consist of lower case letters and/or spaces.
+
+
+public class Vowels {
+
+  public static int getCount(String str) {
+    int vowelCount = 0 ;
+
+    for ( int i = 0 ; i < str.length() ; i++ )
+      {
+         if ( str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u' )
+           {
+           vowelCount++ ;
+         }
+    }
+
+    return vowelCount ;
+  }
+
+}
+
+
+Q3:Ones and Zeros
+Given an array of ones and zeroes, convert the equivalent binary value to an integer.
+
+Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1.
+
+Examples:
+
+Testing: [0, 0, 0, 1] ==> 1
+Testing: [0, 0, 1, 0] ==> 2
+Testing: [0, 1, 0, 1] ==> 5
+Testing: [1, 0, 0, 1] ==> 9
+Testing: [0, 0, 1, 0] ==> 2
+Testing: [0, 1, 1, 0] ==> 6
+Testing: [1, 1, 1, 1] ==> 15
+Testing: [1, 0, 1, 1] ==> 11
+
+import java.util.List;
+
+public class BinaryArrayToNumber {
+
+    public static int ConvertBinaryArrayToInt(List<Integer> binary) {
+        // Your Code
+       int ans = 0 ;
+
+       for ( int i = binary.size()-1; i >= 0  ; i-- )
+         {
+            if( binary.get(i) == 1 )
+              {
+                 ans += Math.pow(2, binary.size()-i-1 ) ;
+            }
+         }
+      return ans ;
+    }
+}
+
+Q4:Sum a list but ignore any duplicates
+Please write a function that sums a list, but ignores any duplicated items in the list.
+
+For instance, for the list [3, 4, 3, 6] the function should return 10,
+and for the list [1, 10, 3, 10, 10] the function should return 4.
+
+
+import java.util.* ;
+public class Solution{
+    public static int sumNoDuplicates(int[] arr){
+
+    int sum =  0 ;
+      Map<Integer , Integer> map = new HashMap<>();
+      for (int num : arr)
+        { if (map.containsKey(num))
+         map.put(num ,map.get(num)+1);
+          else {map.put(num ,1);}
+         }
+
+      for (Map.Entry<Integer , Integer> num: map.entrySet())
+      {        if (num.getValue() == 1)
+          {
+           sum += num.getKey();
+        }
+      }
+
+      return sum;
+
+    }
+}
+
+
+Q5:Count the divisors of a number
+
+Count the number of divisors of a positive integer n.
+
+Random tests go up to n = 500000.
+
+Examples (input --> output)
+4 --> 3 // we have 3 divisors - 1, 2 and 4
+5 --> 2 // we have 2 divisors - 1 and 5
+12 --> 6 // we have 6 divisors - 1, 2, 3, 4, 6 and 12
+30 --> 8 // we have 8 divisors - 1, 2, 3, 5, 6, 10, 15 and 30
+
+Note you should only return a number, the count of divisors. The numbers between parentheses are shown only for you to see which numbers are counted in each case.
+
+public class FindDivisor {
+
+  public long numberOfDivisors(int n) {
+    // TODO please write your code below this comment
+      long ans = 0;
+
+      for( int i =1 ; i<= n ; i++ )
+        {
+          if ( n%i == 0 ) ans++ ;
+      }
+    return ans ;
+  }
+
+}
+
+

@@ -1,0 +1,93 @@
+Q1:Spiral Matrix
+Given an m x n matrix, return all elements of the matrix in spiral order.
+
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> ans = new ArrayList<Integer> () ;
+
+        int rowmin = 0 , rowmax = matrix.length ;
+        int colmin = 0 , colmax = matrix[0].length ;
+
+        int countElements = rowmax * colmax ;
+        rowmax -- ;
+        colmax -- ;
+        int count = 0;
+        while ( count != countElements  )
+        {
+            for ( int i = colmin ; i <= colmax && count != countElements ; i++ )
+            {
+                ans.add(matrix[rowmin][i]);
+                count++ ;
+            }
+            rowmin++ ;
+            for( int i = rowmin ; i <= rowmax && count != countElements ; i++ )
+            {
+                ans.add(matrix[i][colmax]);
+                count++;
+            }
+            colmax-- ;
+
+            for ( int i = colmax ; i >= colmin && count != countElements ; i-- )
+            {
+                ans.add(matrix[rowmax][i]);
+                count++;
+            }
+            rowmax-- ;
+            for( int i = rowmax ; i >= rowmin && count != countElements ; i-- )
+            {
+                ans.add(matrix[i][colmin]);
+                count++;
+            }
+            colmin++ ;
+        }
+        return ans ;
+    }
+}
+
+
+Q2:Move Zeroes
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+Note that you must do this in-place without making a copy of the array.
+
+
+
+Example 1:
+
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+Example 2:
+
+Input: nums = [0]
+Output: [0]
+
+
+class Solution {
+    public void moveZeroes(int[] nums) {
+        //int zeroInd = 0 ;
+        int ind = 0 ;
+
+        for ( int i = 0 ; i < nums.length ; i++ )
+        {
+            if ( nums[i] == 0 )
+            {
+
+                ind = i ;
+                while ( ind < nums.length-1 &&  nums[ind] == 0  )
+                {
+                    ind++ ;
+                }
+                int temp = nums[i] ;
+                nums[i] = nums[ind] ;
+                nums[ind] = temp ;
+
+            }
+        }
+    }
+}
+
+
+
+
+
